@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        function showAnswer(elem){
+            //$('#'+elem).attr('style','display:block;');
+            $("#"+elem).toggle(500);
+        }
+        $(document).ready(function(){
+            $( "p" ).each(function( index ) {
+                console.log( index + ": " + $( this ).attr('id') );
+                //$('#'+$( this ).attr('id')).toggle();
+              });
+        });
+
+        document.getElementById("myButton").onclick = function () {
+            location.href = "www.youtube.com";
+        };
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="box">
+    <form method="post" action="">
+        {% csrf_token %}
+        {% for q in quiz %}
+        <ul>
+            <li>{{ q.text }}</a> </li>
+        </ul>      
+        A.&nbsp;&nbsp;<input type="radio" name="{{q.id}}">&nbsp;&nbsp;{{q.answer_1}}<br>
+        B.&nbsp;&nbsp;<input type="radio" name="{{q.id}}">&nbsp;&nbsp;{{q.answer_2}}<br>
+        C.&nbsp;&nbsp;<input type="radio" name="{{q.id}}">&nbsp;&nbsp;{{q.answer_3}}<br>
+        D.&nbsp;&nbsp;<input type="radio" name="{{q.id}}">&nbsp;&nbsp;{{q.answer_4}}  
+        <br>
+        <br>
+        <p>
+            <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapse{{q.id}}" aria-expanded="false" aria-controls="collapseExample">
+                        Show Answer
+            </a>
+        </p>
+        <div class="collapse" id="collapse{{q.id}}">
+            <div class="well">
+                <p id="answer_{{q.id}}"> {{q.correct_answer}} </p>
+            </div>
+        </div>
+        <br>
+                
+        {% endfor %}
+    </form>
+    <a class="btn btn-primary" href="{% url 'aptitude_2' %}">Next</a>
+    </div>
+{% endblock %}
+

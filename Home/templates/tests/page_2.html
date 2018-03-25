@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block scripts %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/tests.css' %}">
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="panel-group">    
+    <div class="row">
+                
+        <div class="col-md-5"> 
+        <div class="panel panel-info">
+            <div class="panel-heading">Aptitide</div>
+            <div class="panel-body">
+                <ul>
+                    <li>Hi</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="panel panel-info" id="box2">
+            <div class="panel-heading">CDAC</div>
+            <div class="panel-body">
+                <ul>
+                    <li>Hello</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

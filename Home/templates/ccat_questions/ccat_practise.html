@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="box">
+    <h3>Select your section</h3>
+    {% for section in sections_list %}
+
+    <ul>
+        <li><a href="{{ section.id }}">{{ section.name }}</a></li>
+    </ul>
+    {% endfor %}
+</div>
+{% endblock %}
