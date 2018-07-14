@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% for topics in topic_list %}
+    <ul>
+        <li><a href="{% url 'choose_interview_topic' topics.slug%}">{{ topics.text }}</a></li>
+    </ul>
+{% endfor %}
+
+{% endblock %}

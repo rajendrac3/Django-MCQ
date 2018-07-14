@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block scripts %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+Resources to download
+<br>
+For copyright issues we have removed some of the important resources, to avail them please email us below
+<br>
+<form action="{% url 'email_submitted' %}" method="POST">
+        <div class="col-md-4">
+        Select exam type
+        <select class="form-control" name="exam_type" >
+            <option value="ccat">C-CAT</option>
+            <option value="ccee">CCEE</option>
+        </select>
+        </div>
+
+        <div class="col-xs-4">
+Enter your email id here : <input type="email" class="form-control" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+</div><br>
+<button type="submit" class="btn btn-info">Submit email</button>
+
+{% endblock %}

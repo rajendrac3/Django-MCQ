@@ -1,0 +1,259 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block scripts %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+        table, th, td {
+            border: 1px solid #818181;
+            border-collapse: collapse;
+            color: #55636c;
+        }
+
+        th{
+            font-size: 12px;
+        }
+
+        td{
+            font-size: 13px;
+            text-align: center;
+        }
+
+
+        th, td {
+            padding: 5px;
+            text-align: left;    
+        }
+</style>
+
+{% endblock %}
+
+{% block body %}
+    
+<h3>Detailed Eligibility Criteria for PG Diploma Courses of C-DAC</h3><br>
+<div class="table-responsive">
+<table class="table">
+    <tr>
+        <th>COURSE CODE</th>
+        <th>COURSE NAME</th>
+        <th>ELIGIBILITY</th>
+        <th>MINIMUM PERCENTAGE</th>
+    </tr>
+    <tr>
+        <td colspan="4" style="text-align: center" >CATEGORY I (Section A in C-CAT)</td>
+    </tr>
+    <tr>
+        <td>PG-DGi</td>
+        <td>Post Graduate Diploma in Geoinformatics</td>
+        <td>
+            <ul>
+                <li>
+                    Common eligibility criteria,  OR
+                </li>
+                <li>
+                    Post Graduate in Physics/ Computational Sciences/ Applied Sciences/ Geography/ Geology/ Mathematics or allied areas
+                </li>
+            </ul>                                
+        </td>
+        <td>50 %</td>        
+    </tr>
+    <tr>
+        <td colspan="4" style="text-align: center" >CATEGORY II (Sections A+B in C-CAT)</td>
+    </tr>
+    <tr>
+        <td>PG-DAC</td>
+        <td>Post Graduate Diploma in Advanced Computing</td>
+        <td>
+            <ul>
+                <li>Common eligibility criteria, OR</li>
+                <li>Graduate in any discipline of Engineering or equivalent, OR</li>
+                <li>MCA, MCM, OR</li>
+                <li>Post Graduate in Physics/ Computational Sciences/ Computing/ Mathematics or allied areas, OR</li>
+                <li>Post Graduate in Management with graduation in Science/ IT/ Computer Applications</li>
+            </ul>
+        </td>
+        <td>50 %</td>
+    </tr>
+    <tr>
+        <td>PG-DMC</td>
+        <td>Post Graduate Diploma in Mobile Computing</td>
+        <td>
+            <ul>
+                <li>Common eligibility criteria, OR</li>
+                <li>Post Graduate in Mathematics or allied areas OR</li>
+                <li>MCA</li>
+            </ul>
+        </td>
+        <td>50 %</td>
+    </tr>
+    <tr>
+        <td>PG-DSSD</td>
+        <td>Post Graduate Diploma in System Software Development</td>
+        <td>
+            <ul>
+                <li>Common eligibility criteria, OR</li>
+                <li>Post Graduate in Mathematics or allied areas OR</li>
+                <li>MCA</li>
+            </ul>
+        </td>
+        <td>55 %</td>
+    </tr>
+    <tr>
+        <td>PG-DITISS</td>
+        <td>Post Graduate Diploma in IT Infrastructure, Systems & Securit</td>
+        <td>
+            <ul>
+                <li>Common eligibility criteria, OR</li>
+                <li>Post Graduate in Mathematics or allied areas OR</li>
+                <li>MCA</li>
+            </ul>
+        </td>
+        <td>55 %</td>
+    </tr>
+    <tr>
+        <td>PG-DBDA</td>
+        <td>Post Graduate Diploma in Big Data Analytics</td>
+        <td>
+            <ul>
+                <li>Common eligibility criteria, OR</li>
+                <li>Post Graduate in Mathematics/ Physics/ Statistics/ MBA Systems OR</li>
+                <li>MCA</li>
+            </ul>
+        </td>
+        <td>55 %</td>
+    </tr>
+    <tr>
+        <td>PG-DIoT</td>
+        <td>Post Graduate Diploma in Internet of Things</td>
+        <td>
+            <ul>
+                <li>Common eligibility criteria, OR</li>
+                <li>MCA</li>
+            </ul>
+        </td>
+        <td>55 %</td>
+    </tr>
+    <tr>
+        <td colspan="4" style="text-align: center" >CATEGORY III (Sections A+B+C in C-CAT)</td>
+    </tr>
+    <tr>
+        <td>PG-DESD</td>
+        <td>Post Graduate Diploma in Embedded Systems Design</td>
+        <td><ul>
+                <li>Common eligibility criteria, OR</li>
+        </ul></td>
+        <td>55 %</td>
+    </tr>
+    <tr>
+        <td>PG-DVLSI</td>
+        <td>Post Graduate Diploma in VLSI Design</td>
+        <td><ul>
+            <li>Common eligibility criteria, OR</li>
+        </ul></td>
+        <td>55 %</td>
+    </tr>
+    <tr>
+        <td>PG-DBIHI</td>
+        <td>Post Graduate Diploma in Biomedical Instrumentation & Health Informatics</td>
+        <td><ul>
+            <li>Common eligibility criteria, OR</li>
+            <li>BE in Biomedical related fields</li>
+        </ul></td>
+        <td>55 %</td>
+    </tr>
+</table>
+</div><br>
+
+<h3>C-CAT Syllabus</h3>
+<h5>C-CAT has three sections (Section A, Section B, Section C) of one-hour duration each. Every section will have 50 objective-type questions of 3 marks each (maximum 150 marks for any one section).</h5>
+<h5>Here’s the syllabus of the different sections of test papers in C-CAT : </h5>
+<div class="table-responsive">
+<table class="table">
+    <tr>
+        <th>TEST PAPER</th>
+        <th>TOPICS</th>
+        <th>DURATION</th>
+    </tr>
+    <tr>
+        <td>Section A</td>
+        <td>English, Logical Reasoning, Quantitative Aptitude</td>
+        <td>1 hour</td>
+    </tr>
+    <tr>
+        <td>Section B</td>
+        <td>Computer Fundamentals, C Programming, Data Structures, Data Communications & Networks, Object Oriented Programming, Operating Systems</td>
+        <td>1 hour</td>
+    </tr>
+    <tr>
+        <td>Section C</td>
+        <td>Computer Architecture, Digital Electronics, Microprocessors</td>
+        <td>1 hour</td>
+    </tr>
+</table></div><br>
+<h3>C-CAT Reference Books</h3>
+<h5>This is an indicative list of some of the reference books you can use to prepare for C-CAT:</h5>
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Section</th>
+            <th>Topic</th>
+            <th>Reference Book</th>
+        </tr>
+        <tr>
+            <td rowspan="2">A</td>
+            <td>English</td>
+            <td>Wren and Martin</td>
+        </tr>
+        <tr>
+            <td>Quantitative Aptitude & Reasoning</td>
+            <td>Quantitative Aptitude Fully Solved (R. S. Aggrawal) <br> Quantitative Aptitude (M Tyara) <br> Barron’s New GRE 2012</td>
+        </tr>
+        <tr>
+            <td rowspan="6">B</td>
+            <td>General Reference Book</td>
+            <td>Foundations of Computing (Pradeep Sinha & Priti Sinha)</td>
+        </tr>
+        <tr>
+            <td>Data Communication & Networking</td>
+            <td>CompTIA Network+ Study Guide (Todd Lammle)</td>
+        </tr>
+        <tr>
+            <td>C Programming</td>
+            <td>Test your C Skills (Yashavant Kanetkar) <br>Let Us C (Yashavant Kanetkar) <br> Exploring C (Yashavant Kanetkar)</td>
+        </tr>
+        <tr>
+            <td>Data Structures</td>
+            <td>Data Structures Through C in Depth (S. K. Srivastava)</td>
+        </tr>
+        <tr>
+            <td>Operating System</td>
+            <td>Operating System Principles (Silberschatz, Galvin, Gagne)</td>
+        </tr>
+        <tr>
+            <td>OOP Concepts</td>
+            <td>Test Your C ++ Skills (Yashavant Kanetkar)</td>
+        </tr>
+        <tr>
+            <td rowspan="3">C</td>
+            <td>Computer Architecture</td>
+            <td>Computer Organization & Architecture (William Stallings)</td>
+        </tr>
+        <tr>
+            <td>Digital Electronics</td>
+            <td>Digital Design (Morris Mano) <br>Digital Design: Principles & Practices (John Wakerly) <br> Modern Digital Electronics (R. P. Jain)</td>
+        </tr>
+        <tr>
+            <td>Microprocessor</td>
+            <td>The Intel Microprocessor, 8th Edition (Barry B. Brey) <br>Microprocessor Architecture Programming & Application with 8085, 5th Edition (Ramesh Gaonkar)</td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}
+
+
+
+    

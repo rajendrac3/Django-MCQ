@@ -1,0 +1,19 @@
+.b-description_readmore_ellipsis:after {    
+  content: '';
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 75%;
+  height: 25px;    
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 65%);
+} 
+
+.b-description_readmore_button {
+  display: inline-block;
+  width: 150px;
+  border: 1px solid black;
+  padding: 10px 0; 
+  cursor: pointer; 
+  text-align: center;
+}

@@ -2,24 +2,127 @@
 
 {% load crispy_forms_tags %}
 
+{% load static %}
+
+{% block scripts%}
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" 
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" 
+        crossorigin="anonymous">
+</script>
+<script src="{% static 'js/jquery.morelines.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/showmore.css' %}">
+<style>
+        .b-description_readmore_ellipsis:after {    
+            content: '';
+            display: inline-block;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 75%;
+            height: 10px;    
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 65%);
+          } 
+          
+          .b-description_readmore_button {
+            display: inline-block;
+            width: 100px;
+            border: 1px solid black;
+            padding: 5px 0; 
+            cursor: pointer; 
+            text-align: center;
+            background: black;
+            color: white;
+          }
+
+          .b-description_readmore {
+            width: 100%;
+            position: relative;
+            margin-bottom: 25px;
+            line-height: 25px;
+            font-size: 1em;
+            text-align: left;
+            box-sizing: border-box;
+            padding: 0 15px;
+        }
+
+</style>
+
+<script>
+        $(function() {
+            $('.js-description_readmore').moreLines({
+              linecount: 9,
+              // default CSS classes
+            baseclass: 'b-description', 
+            basejsclass: 'js-description',
+            classspecific: '_readmore',
+
+            // custom text
+            buttontxtmore: "read more", 
+            buttontxtless: "read less",
+
+            // animation speed in milliseconds
+            animationspeed: 250
+            });
+          });
+</script>
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row">
             <div class="col">
-                <h3>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</h3>
-                <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
-                <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
-                <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
+                <h2>CCAT Exam</h2>
+                <div class="b-description_readmore js-description_readmore">
+                    <h6>C-DAC Common Admission Test (C-CAT) is the entrance test that is conducted in June (for August admissions) and December (for February admissions) to C-DAC's various 6 month long PG Diploma courses.</h6>
+                    <h5>How to register for C-CAT</h5>
+                    <h6>
+                        Admissions to all PG Diploma courses of C-DAC are done through C-DAC's computerized Common Admission Test (C-CAT). Every year, C-CAT is usually conducted in June (for August admissions) and December (for February admissions).
+                    </h6>
+                    <h5>Eligibility Criteria for PG Diploma Courses of C-DAC</h5>
+                    <ul>
+                        <li>
+                            Graduate in Engineering or equivalent (BE/B.Tech/4-year B.Sc Engg/AMIE/DoEACC B Level) in IT/Computer Science/Electronics/Telecommunications/Electrical/Instrumentation.
+                        </li>
+                        OR
+                        <li>
+                            Post Graduate Degree in Engineering Sciences with a corresponding basic degree (M.Sc in Computer Science, IT, Electronics).
+                        </li>
+                    </ul>
+                    <a href="{% url 'ccat_info' %}">More info on C-CAT here</a>
+                </div>
+                <hr> 
+                <h2>CDAC End Exam (CCEE)</h2>  
+                <div class="b-description_readmore js-description_readmore">   
+                    <h6>After completion of all the module of PG-DAC, a written examination CCEE (Centralised Course End Examination) will be held, which will test the knowledge of the students about the theoretical concepts of each module and it is a compulsory part of the evaluation. Conducting CCEE involves performing duty with responsibility. A small mistake in the process may hamper the whole system. </h6>
+                    <h5>Guidelines of CCEE</h5>
+                    <h6>
+                        CCEE will be conducted normally before the commencement of Project work of PG-DAC. <br>
+                        The written exam will be of 60 minutes duration. It will consist of objective questions. A typical objective type exam paper will contain the following type of questions:- <br><br>
+                        <ul><li>Multiple choice</li><li>Yes or No</li><li>True or False</li></ul>
+                        For the pure objective type question paper, there will be 50 objective type questions with 4 maximum answer options having only one correct option. The value of each objective type question is of one mark only. There will not be any negative marks for the wrong answers given by the students.
+                    </h6>
+                </div>
+                <hr>
+                <h2>GATE Comuter Science</h2>
+                <h4 class="b-description_readmore js-description_readmore">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
+                <hr>
+                <h2>CAT preparation</h2>
+                <h4 class="b-description_readmore js-description_readmore">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
+                <hr>
+                <h2>GRE</h2>
+                <h4 class="b-description_readmore js-description_readmore">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
+                <hr>
+                <h2>IBPS PO</h2>
+                <h4 class="b-description_readmore js-description_readmore">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
                 <hr>
                 <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
                 <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
                 <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
                 <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
-                <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
-                <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
-                <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
-                <h4>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</h4>
+                </div>
+                </div>
             </div>
         </div>
     </div>
 {% endblock %}
+

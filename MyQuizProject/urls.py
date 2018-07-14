@@ -22,14 +22,4 @@ from Home import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Home.urls')),
-    # url(r'^$', views.home, name='home'),
-    # path('', views.home, name = 'home'),
-    # path(r'^home', views.home, name = 'home'),
-    # path('home/', views.home, name = 'home'),
-    # path('home/<int: year>', views.home, name = 'home'),
-    # path(r'^home/<int: year>', views.home, name = 'home'),
-    # url(r'^practise', views.practise, name = 'practise'),
-    # url(r'^ccat_practise', views.ccat_practise, name = 'ccat_practise'),
-    # url(r'^cdac_practise', views.cdac_practise, name = 'cdac_practise'),
-    # url(r'^aptitude', views.aptitude, name = 'aptitude'),
 ]

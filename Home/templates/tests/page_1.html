@@ -21,9 +21,9 @@
         <div class="panel panel-info">
             <div class="panel-heading">Aptitide</div>
             <div class="panel-body">
-                {% for apt_list in aps %}
+                {% for item in item1 %}
                 <ul>
-                    <li>{{apt_list.category}}</a></li>
+                    <li><a href="{% url 'tests_topic' item.slug %}">{{item.Subcategories}}</a></li>
                 </ul>
                 {% endfor %}
             </div>
@@ -33,9 +33,9 @@
         <div class="panel panel-info" id="box2">
             <div class="panel-heading">CDAC</div>
             <div class="panel-body">
-                {% for item in items %}
+                {% for item in item2 %}
                 <ul>
-                    <li>{{item.category}}</li>
+                    <li><a href="{% url 'tests_topic' item.slug %}">{{item.Subcategories}}</a></li>
                 </ul>
                 {% endfor %}
             </div>

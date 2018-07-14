@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block body %}
+        
+{% for questions in questions_list %}
+<div class="lead" style="padding-top: 2%;
+padding-bottom: 2%;">
+  {{ questions.question }}
+</div>
+<div class="container">
+    <div class="list-group-item" style="background-color: whitesmoke;">
+        {{ questions.answer | linebreaks }}
+      </div>
+</div>
+{% endfor %}
+
+
+{% if questions_list.has_other_pages %}
+  <ul class="pagination" style="padding-top: 2%">
+    {% if questions_list.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ questions_list.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link"><span>&laquo;</span></a></li>
+    {% endif %}
+    {% for i in questions_list.paginator.page_range %}
+      {% if questions_list.number == i %}
+        <li class="page-item active"><a class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if questions_list.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ questions_list.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link"><span>&raquo;</span></a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+{% endblock %}

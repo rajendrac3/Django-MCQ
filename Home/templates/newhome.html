@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block scripts %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/tests.css' %}">
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="panel-group">    
+    <div class="row">
+                
+        <div class="col-md-5"> 
+        <div class="panel panel-info">
+            <div class="panel-heading">General Aptitude</div>
+            <div class="panel-body">
+                {% for item in ga_list %}
+                <ul>
+                    <li><a href="{% url 'home_topics' item.slug %}">{{item.name}}</a></li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-5">
+        <div class="panel panel-info" id="box2">
+            <div class="panel-heading">Verbal Reasoning</div>
+            <div class="panel-body">
+                {% for item in vr_list %}
+                <ul>
+                    <li><a href="{% url 'home_topics' item.slug %}">{{item.name}}</a></li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="panel panel-info" id="box2">
+            <div class="panel-heading">Engineering</div>
+            <div class="panel-body">
+                {% for item in item2 %}
+                <ul>
+                    <li><a href="{% url 'tests_topic' item.slug %}">{{item.Subcategories}}</a></li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="panel panel-info" id="box2">
+            <div class="panel-heading">Programming</div>
+            <div class="panel-body">
+                {% for item in item2 %}
+                <ul>
+                    <li><a href="{% url 'tests_topic' item.slug %}">{{item.Subcategories}}</a></li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+</div>
+{% endblock %}
+

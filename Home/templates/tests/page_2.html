@@ -9,35 +9,124 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/tests.css' %}">
+
+    <script>
+      function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10)
+            seconds = parseInt(timer % 60, 10);
+    
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+            display.textContent = minutes + ":" + seconds;
+    
+            if (--timer < 0) {
+                timer = duration;
+                alert("timeup!");
+                $('#test_submitted').submit();
+            }
+        }, 1000);
+        
+    }
+    
+    window.onload = function () {
+        var fiveMinutes = 95 * 100,
+            display = document.querySelector('#time');
+        startTimer(fiveMinutes, display);
+    };
+
+
+    function selectAnswer(elem){
+      $elem=$(elem);
+          //console.log($elem.attr('data-formname'));
+          console.log("$elem.attr('value') "+$elem.attr('value'));
+          //console.log($elem.attr('data-formname').split('_')[1]);
+          form_id=$elem.attr('data-formname');
+          selected_answer=$elem.attr('value');
+          $.ajax( {
+              type: "POST",
+              url:'/test_answer',
+              data: {qid:form_id.split('_')[1],selected_answer:selected_answer},
+              success: function( response ) {
+                  //console.log("status response"+response);
+              if(response.status=='yes'){
+                  $.each($('#'+form_id+' .answer'),function(key,value){
+                      //console.log(value);
+                      if($(value).attr('value')!=selected_answer){
+                      $(value).attr('disabled','disabled');
+                      }else{
+                      console.log("value "+value)
+                      value.append('Right');
+  //                    value.append('Correct');
+                      }
+                  });
+                  console.log('correct answer');
+              }else{
+                  console.log('incorrect answer');
+                  }  
+              },
+              response: {
+                  html: '<h1>Hell hell</h1>'
+              }
+            });
+          }
+
+
+    </script>
+
+
 {% endblock %}
 
 {% block body %}
 
+<div>Time left <span id="time">00:05</span> minutes!</div>
+<form action="" method="POST" id="form_{{questions.id}}">
+    {% csrf_token %}
+{% for questions in questions_list %}
+    <div class="lead" style="padding-top: 2%; padding-bottom: 2%;">
+        <ul>
+            <li>
+                {{ questions.question }}
+            </li>
+        </ul>
 
-    <div class="panel-group">    
-    <div class="row">
-                
-        <div class="col-md-5"> 
-        <div class="panel panel-info">
-            <div class="panel-heading">Aptitide</div>
-            <div class="panel-body">
-                <ul>
-                    <li>Hi</a></li>
-                </ul>
-            </div>
-        </div>
+        <dl>
+            <dd>A.<input type="radio" name="option{{questions.id}}" value="{{questions.answer_1}}" class="answer" data-formname="form_{{questions.id}}" onclick="selectAnswer(this)">&nbsp;&nbsp;{{questions.answer_1}}</dd>
+            <dd>B.<input type="radio" name="option{{questions.id}}" value="{{questions.answer_2}}" class="answer" data-formname="form_{{questions.id}}" onclick="selectAnswer(this)">&nbsp;&nbsp;{{questions.answer_2}}</dd>
+            <dd>C.<input type="radio" name="option{{questions.id}}" value="{{questions.answer_3}}" class="answer" data-formname="form_{{questions.id}}" onclick="selectAnswer(this)">&nbsp;&nbsp;{{questions.answer_3}}</dd>
+            <dd>D.<input type="radio" name="option{{questions.id}}" value="{{questions.answer_4}}" class="answer" data-formname="form_{{questions.id}}" onclick="selectAnswer(this)">&nbsp;&nbsp;{{questions.answer_4}}</dd>
+        </dl>
+
     </div>
-    <div class="col-md-5">
-        <div class="panel panel-info" id="box2">
-            <div class="panel-heading">CDAC</div>
-            <div class="panel-body">
-                <ul>
-                    <li>Hello</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-</div>
+{% endfor %}
+
+<button value="submit">Submit test</button>
+</form>
+
+
+
+{% if questions_list.has_other_pages %}
+  <ul class="pagination" style="padding-top: 2%">
+    {% if questions_list.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ questions_list.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link"><span>&laquo;</span></a></li>
+    {% endif %}
+    {% for i in questions_list.paginator.page_range %}
+      {% if questions_list.number == i %}
+        <li class="page-item active"><a class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if questions_list.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ questions_list.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link"><span>&raquo;</span></a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+    
 {% endblock %}
