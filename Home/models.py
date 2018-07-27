@@ -113,11 +113,3 @@ class Downloads(models.Model):
 
     def __str__(self):
         return self.email_id
-
-class Tests_Answers(models.Model):
-    ques_id = models.CharField(max_length=10, default='3')
-    correct_answer = models.CharField(max_length=1000, default='v')
-    answer_by_user = models.CharField(max_length=1000, default='v')
-
-    def __str__(self):
-        return self.answer_by_user

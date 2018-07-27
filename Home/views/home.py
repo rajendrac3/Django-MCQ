@@ -8,7 +8,7 @@ from django.db.models import Q, Count
 from django.db.models.query import QuerySet
 import requests
 
-from ..models import Course, Quiz, Question, InterviewTopic, iquestions, SubcategoriesOfTests, TestCategories, Tests, Downloads, Tests_Answers, HomeCategories
+from ..models import Course, Quiz, Question, InterviewTopic, iquestions, SubcategoriesOfTests, TestCategories, Tests, Downloads, HomeCategories
 from ..forms import TakeQuizForm
 
 sess_list = []
@@ -21,11 +21,41 @@ def home(request):
     progg = HomeCategories.objects.filter(reference_id='4')
     all_items = {}
     all_items = {"ga_list":ga, "vr_list":vr, "engg_list":engg, "progg_list":progg}
-    return render(request, 'newhome.html', all_items)
+    return render(request, 'index.html', all_items)
 
 def home_topics(request, slug):
     print("in hometopics", slug)
-    return render(request, "homequestions.html")
+    filter_slug = SubcategoriesOfTests.objects.filter(slug=slug)
+    print("filter slug", filter_slug)
+    for obj in filter_slug:
+        print("got object", obj)
+    filter_topics = Tests.objects.filter(sub_category_id=obj)
+    print('filter_topics', filter_topics)
+    test_questions = {"filter_topics": filter_topics}
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(filter_topics, 5)
+
+    try:
+        practise_question = paginator.page(page)
+    except PageNotAnInteger:
+        practise_question = paginator.page(1)
+    except EmptyPage:
+        practise_question = paginator.page(paginator.num_pages)
+
+    return render(request, "home_practise.html", {"practise_question":practise_question})
+
+def tests_online(request, slug):
+    print("in hometopics", slug)
+    filter_slug = SubcategoriesOfTests.objects.filter(slug=slug)
+    print("filter slug", filter_slug)
+    for obj in filter_slug:
+        print("got object", obj)
+    filter_topics = Tests.objects.filter(sub_category_id=obj)
+    print('filter_topics', filter_topics)
+    test_questions = {"filter_topics": filter_topics}
+    return render(request, "home_tests.html", test_questions)
+
 
 def examinfo(request):
     print("in examinfo")
@@ -90,6 +120,17 @@ def selected_answer(request):
     print("This is qid", request.POST['qid'])
     print("This is clicked answer", request.POST['selected_answer'])
     db = Question.objects.get(id=request.POST['qid'])
+    print("db", db)
+    if request.POST['selected_answer'] == str(db):
+        st = {'status': 'yes'}
+    else:
+        st = {'status': 'no'}        
+    return JsonResponse(st)
+
+def home_selected_answer(request):
+    print("This is qid", request.POST['qid'])
+    print("This is clicked answer", request.POST['selected_answer'])
+    db = Tests.objects.get(id=request.POST['qid'])
     print("db", db)
     if request.POST['selected_answer'] == str(db):
         st = {'status': 'yes'}

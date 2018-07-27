@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block scripts %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/tests.css' %}">
+
+    <script>
+      function startTimer(duration, display) {
+        var timer = duration, minutes, seconds;
+        setInterval(function () {
+            minutes = parseInt(timer / 60, 10)
+            seconds = parseInt(timer % 60, 10);
+    
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+            display.textContent = minutes + ":" + seconds;
+    
+            if (--timer < 0) {
+                timer = duration;
+                alert("timeup!");
+                $('#test_submitted').submit();
+            }
+        }, 1000);
+        
+    }
+    
+    window.onload = function () {
+        var fiveMinutes = 5 * 1000,
+            display = document.querySelector('#time');
+        startTimer(fiveMinutes, display);
+    };
+</script>
+
+{% endblock %}
+
+{% block body %}
+<div>Time left <span id="time">158:20</span> minutes!</div>
+{% for questions in filter_topics %}
+    <div class="lead" style="padding-top: 2%; padding-bottom: 2%;">
+        <ul>
+            <li>
+                {{ questions.question }}
+            </li>
+        </ul>
+
+        <dl>
+            <dd>A.<input type="radio" name="option{{questions.id}}" value="{{questions.answer_1}}" class="answer" data-formname="form_{{questions.id}}" onclick="selectAnswer(this)">&nbsp;&nbsp;{{questions.answer_1}}</dd>
+            <dd>B.<input type="radio" name="option{{questions.id}}" value="{{questions.answer_2}}" class="answer" data-formname="form_{{questions.id}}" onclick="selectAnswer(this)">&nbsp;&nbsp;{{questions.answer_2}}</dd>
+            <dd>C.<input type="radio" name="option{{questions.id}}" value="{{questions.answer_3}}" class="answer" data-formname="form_{{questions.id}}" onclick="selectAnswer(this)">&nbsp;&nbsp;{{questions.answer_3}}</dd>
+            <dd>D.<input type="radio" name="option{{questions.id}}" value="{{questions.answer_4}}" class="answer" data-formname="form_{{questions.id}}" onclick="selectAnswer(this)">&nbsp;&nbsp;{{questions.answer_4}}</dd>
+        </dl>
+
+    </div>
+{% endfor %}
+
+<button value="submit">Submit test</button>
+</form>
+{% endblock %}
+

@@ -71,11 +71,11 @@
     <br>
         <div class="col-md-5">
         <div class="panel panel-info" id="box2">
-            <div class="panel-heading">Tets</div>
+            <div class="panel-heading">Tests</div>
             <div class="panel-body">
                 {% for item in progg_list %}
                 <ul>
-                    <li><a href="{% url 'home_topics' item.slug %}">{{item.name}}</a></li>
+                    <li><a href="{% url 'tests_online' item.slug %}">{{item.name}}</a></li>
                 </ul>
                 {% endfor %}
             </div>

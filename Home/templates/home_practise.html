@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block scripts %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/tests.css' %}">
+
+
+    <script>
+        function showAnswer(elem){
+            $("#"+elem).toggle(500);
+        }
+        $(document).ready(function(){
+            $( "p" ).each(function( index ) {
+              });
+        });
+
+       function selectAnswer(elem){
+		$elem=$(elem);
+        console.log($elem.attr('data-formname'));
+        console.log($elem.attr('value'));
+        console.log($elem.attr('data-formname').split('_')[1]);
+        form_id=$elem.attr('data-formname');
+        selected_answer=$elem.attr('value');
+        $.ajax( {
+            type: "POST",
+            url:'/home_answer',
+            data: {qid:form_id.split('_')[1],selected_answer:selected_answer},
+            success: function( response ) {
+                console.log(response);
+            if(response.status=='yes'){
+                $.each($('#'+form_id+' .answer'),function(key,value){
+                    //console.log(value);
+                    if($(value).attr('value')!=selected_answer){
+                    $(value).attr('disabled','disabled');
+                    }else{
+                    console.log(value)
+                    value.append('Right');
+//                    value.append('Correct');
+                    }
+                });
+                console.log('correct answer');
+            }else{
+                console.log('incorrect answer');
+                }  
+            },
+            response: {
+                html: '<h1>Hell hell</h1>'
+            }
+          });
+        }
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+
+        {% for q in practise_question %}
+        <form method="POST" action="" id="form_{{q.id}}" class="question_form">
+                {% csrf_token %}
+        <ul>
+            <li>{{ q.question }}</li>
+        </ul>   
+        
+        <dl>
+            <dd>A.<input type="radio" name="option{{q.id}}" value="{{q.answer_1}}" class="answer" data-formname="form_{{q.id}}" onclick="selectAnswer(this)">&nbsp;&nbsp;{{q.answer_1}}</dd>
+            <dd>B.<input type="radio" name="option{{q.id}}" value="{{q.answer_2}}" class="answer" data-formname="form_{{q.id}}" onclick="selectAnswer(this)">&nbsp;&nbsp;{{q.answer_2}}</dd>
+            <dd>C.<input type="radio" name="option{{q.id}}" value="{{q.answer_3}}" class="answer" data-formname="form_{{q.id}}" onclick="selectAnswer(this)">&nbsp;&nbsp;{{q.answer_3}}</dd>
+            <dd>D.<input type="radio" name="option{{q.id}}" value="{{q.answer_4}}" class="answer" data-formname="form_{{q.id}}" onclick="selectAnswer(this)">&nbsp;&nbsp;{{q.answer_4}}</dd>
+        </dl>
+    
+        <br>
+        <p>
+            <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapse{{q.id}}" aria-expanded="false" aria-controls="collapseExample">
+                        Show Answer
+            </a>
+        </p>
+        <div class="collapse" id="collapse{{q.id}}">
+            <div class="card card-block bg-light">
+                <p id="answer_{{q.id}}">&nbspAnswer:&nbsp{{q.correct_answer}}</p>
+            </div>
+        </div>
+        <hr>
+    </form>            
+{% endfor %}
+</div>
+
+{% if practise_question.has_other_pages %}
+  <ul class="pagination">
+    {% if practise_question.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ practise_question.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link"><span>&laquo;</span></a></li>
+    {% endif %}
+    {% for i in practise_question.paginator.page_range %}
+      {% if practise_question.number == i %}
+        <li class="page-item active"><a class="page-link"><span>{{ i }} <span class="sr-only">(current)</span></span></a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if practise_question.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ practise_question.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link"><span>&raquo;</span></a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+{% endblock %}
+

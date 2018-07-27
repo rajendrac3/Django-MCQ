@@ -19,9 +19,11 @@ urlpatterns = [
     path('email_submitted', home.email_submitted, name='email_submitted'),
     path('ccat_info', home.ccat_info, name='ccat_info'),
     path('tests/<slug:slug>', home.tests_topic, name='tests_topic'),
+    path('home_answer', home.home_selected_answer, name='home_selected_answer'),
     path('answer', home.selected_answer, name='selected_answer'),
     path('test_answer', home.selected_test_answer, name='selected_test_answer'),
     path('test_submitted', home.test_submitted, name='test_submitted'),
     path('InterviewQnA/<slug:slug>', home.choose_interview_topic, name='choose_interview_topic'),
-    path('<slug:slug>', home.home_topics, name='home_topics')
+    path('online-programming-tests/<slug:slug>', home.tests_online, name='tests_online'),
+    path('online-aptitude/<slug:slug>', home.home_topics, name='home_topics'),
 ]
