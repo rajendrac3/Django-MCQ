@@ -42,33 +42,45 @@
             </div>
         </div>
     </div>
-
+    <br>
     <div class="col-md-5">
         <div class="panel panel-info" id="box2">
             <div class="panel-heading">Engineering</div>
             <div class="panel-body">
-                {% for item in item2 %}
+                {% for item in engg_list %}
                 <ul>
-                    <li><a href="{% url 'tests_topic' item.slug %}">{{item.Subcategories}}</a></li>
+                    <li><a href="{% url 'home_topics' item.slug %}">{{item.name}}</a></li>
                 </ul>
                 {% endfor %}
             </div>
         </div>
     </div>
-
+    <br>
     <div class="col-md-5">
         <div class="panel panel-info" id="box2">
             <div class="panel-heading">Programming</div>
             <div class="panel-body">
-                {% for item in item2 %}
+                {% for item in progg_list %}
                 <ul>
-                    <li><a href="{% url 'tests_topic' item.slug %}">{{item.Subcategories}}</a></li>
+                    <li><a href="{% url 'home_topics' item.slug %}">{{item.name}}</a></li>
                 </ul>
                 {% endfor %}
             </div>
         </div>
     </div>
-
+    <br>
+        <div class="col-md-5">
+        <div class="panel panel-info" id="box2">
+            <div class="panel-heading">Tets</div>
+            <div class="panel-body">
+                {% for item in progg_list %}
+                <ul>
+                    <li><a href="{% url 'home_topics' item.slug %}">{{item.name}}</a></li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
     </div>
     </div>
 </div>

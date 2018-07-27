@@ -17,8 +17,10 @@ count_answers = 0
 def home(request):
     ga = HomeCategories.objects.filter(reference_id='1')
     vr = HomeCategories.objects.filter(reference_id='2')
+    engg = HomeCategories.objects.filter(reference_id='3')
+    progg = HomeCategories.objects.filter(reference_id='4')
     all_items = {}
-    all_items = {"ga_list":ga, "vr_list":vr}
+    all_items = {"ga_list":ga, "vr_list":vr, "engg_list":engg, "progg_list":progg}
     return render(request, 'newhome.html', all_items)
 
 def home_topics(request, slug):
@@ -100,7 +102,7 @@ def selected_test_answer(request):
     db = Tests.objects.get(id=request.POST['qid'])
     print("id", request.POST['qid'])
     print("db", db)
-    print("This answer is selected by user", type(request.POST['selected_answer']))
+    print("This answer is selected by user", request.POST['selected_answer'])
     global count_answers
     if str(db) == request.POST['selected_answer']:
         print("before print")
@@ -183,7 +185,7 @@ def tests_topic(request, slug):
     print('filter_topics', filter_topics)
     test_questions = {}
     page = request.GET.get('page', 1)
-    paginator = Paginator(filter_topics, 5)
+    paginator = Paginator(filter_topics, 15)
 
     try:
         new_qz = paginator.page(page)

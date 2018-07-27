@@ -81,7 +81,7 @@
 
 {% block body %}
 
-<div>Time left <span id="time">00:05</span> minutes!</div>
+<div>Time left <span id="time">158:20</span> minutes!</div>
 <form action="" method="POST" id="form_{{questions.id}}">
     {% csrf_token %}
 {% for questions in questions_list %}
@@ -104,10 +104,10 @@
 
 <button value="submit">Submit test</button>
 </form>
+{% endblock %}
 
 
-
-{% if questions_list.has_other_pages %}
+{% comment %}{% if questions_list.has_other_pages %}
   <ul class="pagination" style="padding-top: 2%">
     {% if questions_list.has_previous %}
       <li class="page-item"><a class="page-link" href="?page={{ questions_list.previous_page_number }}">&laquo;</a></li>
@@ -129,4 +129,4 @@
   </ul>
 {% endif %}
     
-{% endblock %}
+{% endblock %}{% endcomment %}
