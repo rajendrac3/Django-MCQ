@@ -30,7 +30,7 @@
         </div>
     </div>
     <br>
-    <div class="col-md-5">
+    <div class="col-md-5" style="width:10%">
         <div class="panel panel-info" id="box2">
             <div class="panel-heading">Verbal Reasoning</div>
             <div class="panel-body">
@@ -43,19 +43,8 @@
         </div>
     </div>
     <br>
-    <div class="col-md-5">
-        <div class="panel panel-info" id="box2">
-            <div class="panel-heading">Engineering</div>
-            <div class="panel-body">
-                {% for item in engg_list %}
-                <ul>
-                    <li><a href="{% url 'home_topics' item.slug %}">{{item.name}}</a></li>
-                </ul>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    <br>
+    
+    <div style="width:100%;margin-top:10%">
     <div class="col-md-5">
         <div class="panel panel-info" id="box2">
             <div class="panel-heading">Programming</div>
@@ -68,8 +57,11 @@
             </div>
         </div>
     </div>
-    <br>
-        <div class="col-md-5">
+    </div>
+
+<br>
+    {% comment %}<div style="width:60%;position:static; margin:-26% 0% 0% 45%;">{% endcomment %}
+        <div class="col-md-5" style="width:60%;position:static; margin:-26% 0% 0% 42%;">
         <div class="panel panel-info" id="box2">
             <div class="panel-heading">Tests</div>
             <div class="panel-body">
@@ -81,8 +73,9 @@
             </div>
         </div>
     </div>
+    {% comment %}</div>{% endcomment %}
     </div>
-    </div>
+</div>
 </div>
 {% endblock %}
 

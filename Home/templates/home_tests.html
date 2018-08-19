@@ -32,16 +32,55 @@
     }
     
     window.onload = function () {
-        var fiveMinutes = 5 * 1000,
+        var fiveMinutes = 1 * 500,
             display = document.querySelector('#time');
         startTimer(fiveMinutes, display);
     };
+
+
+    function selectAnswer(elem){
+      $elem=$(elem);
+          //console.log($elem.attr('data-formname'));
+          console.log("$elem.attr('value') "+$elem.attr('value'));
+          //console.log($elem.attr('data-formname').split('_')[1]);
+          form_id=$elem.attr('data-formname');
+          selected_answer=$elem.attr('value');
+          $.ajax( {
+              type: "POST",
+              url:'/test_answer',
+              data: {qid:form_id.split('_')[1],selected_answer:selected_answer},
+              success: function( response ) {
+                  //console.log("status response"+response);
+              if(response.status=='yes'){
+                  $.each($('#'+form_id+' .answer'),function(key,value){
+                      //console.log(value);
+                      if($(value).attr('value')!=selected_answer){
+                      $(value).attr('disabled','disabled');
+                      }else{
+                      console.log("value "+value)
+                      value.append('Right');
+  //                    value.append('Correct');
+                      }
+                  });
+                  console.log('correct answer');
+              }else{
+                  console.log('incorrect answer');
+                  }  
+              },
+              response: {
+                  html: '<h1>Hell hell</h1>'
+              }
+            });
+          }        
+
+
+
 </script>
 
 {% endblock %}
 
 {% block body %}
-<div>Time left <span id="time">158:20</span> minutes!</div>
+<div>Time left <span id="time">00:05</span> minutes!</div>
 {% for questions in filter_topics %}
     <div class="lead" style="padding-top: 2%; padding-bottom: 2%;">
         <ul>

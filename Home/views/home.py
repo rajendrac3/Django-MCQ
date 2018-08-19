@@ -12,7 +12,7 @@ from ..models import Course, Quiz, Question, InterviewTopic, iquestions, Subcate
 from ..forms import TakeQuizForm
 
 sess_list = []
-count_answers = 0
+count_answers = {}
 
 def home(request):
     ga = HomeCategories.objects.filter(reference_id='1')
@@ -144,11 +144,31 @@ def selected_test_answer(request):
     print("id", request.POST['qid'])
     print("db", db)
     print("This answer is selected by user", request.POST['selected_answer'])
-    global count_answers
-    if str(db) == request.POST['selected_answer']:
-        print("before print")
-        count_answers = count_answers+1
-        print("count", count_answers)
+    ans_by_uesr = request.POST['selected_answer']
+    dbstr = str(db)
+    request.session[dbstr] = ans_by_uesr
+    # print("ans in session", request.session[dbstr])
+    if request.session[dbstr] == str(db):
+        print("True")
+        count_answers[dbstr] = ans_by_uesr
+        print("ans in if", count_answers)
+    else:
+        print("in else")
+        count_answers[dbstr] = 'wrong'
+        print("ans in else", count_answers)
+
+    print("dictionary", count_answers)
+    print("keys", count_answers.keys())
+    print("values", count_answers.values())
+        #  if k == v:
+        #      corr_answers += 1
+        #      break
+
+    # global count_answers
+    # if str(db) == request.POST['selected_answer']:
+    #     print("before print")
+    #     count_answers = count_answers+1
+    #     print("count", count_answers)
     
     # sess_list.append(request.POST['selected_answer'])
     # request.session['sel_ans'] = sess_list
